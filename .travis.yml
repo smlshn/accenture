@@ -1,0 +1,32 @@
+sudo: required
+matrix:
+  include:
+    - language: java
+      jdk: openjdk8
+      env: FRONT=false
+
+    - language: java
+      jdk: oraclejdk8
+      env: FRONT=false
+
+    - language: java
+      jdk: oraclejdk9
+      env: FRONT=false
+
+    - language: node_js
+      node_js: 6.14.1
+      env: FRONT=true
+
+    - language: node_js
+      node_js: lts/*
+      env: FRONT=true
+
+    - language: node_js
+      node_js: node
+      env: FRONT=true
+
+  allow_failures:
+    - jdk: oraclejdk9
+
+before_install:
+  - if [[ $FRONT = 'true' ]]; then cd front; fi
