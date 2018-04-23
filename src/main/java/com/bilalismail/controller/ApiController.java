@@ -1,9 +1,5 @@
-package com.mpalourdio.html5.api;
+package com.bilalismail.controller;
 
-import com.blueconic.browscap.Capabilities;
-import com.blueconic.browscap.ParseException;
-import com.blueconic.browscap.UserAgentParser;
-import com.blueconic.browscap.UserAgentService;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,16 +21,11 @@ import java.util.List;
 @RequestMapping(path = "/api")
 public class ApiController {
 
-    private final UserAgentParser parser;
     private byte[] fileContent;
     private String fileName;
     private String contentType;
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-
-    public ApiController() throws IOException, ParseException {
-        parser = new UserAgentService().loadParser();
-    }
 
     @PostMapping(path = "/service1")
     public ResponseEntity<List<String>> consumeMePlease() {
@@ -89,11 +80,6 @@ public class ApiController {
         }
 
         return result;
-    }
-
-    @GetMapping(path = "/useragent")
-    public Capabilities getOptions(HttpServletRequest request) {
-        return parser.parse(request.getHeader("user-agent"));
     }
 
     private void generateCookie(HttpServletResponse response, HttpServletRequest request) {

@@ -1,0 +1,25 @@
+
+server:
+  port: 8080
+  servlet.context-path: /
+  compression:
+    enabled: true
+    mime-types: application/javascript,application/json,text/css,text/html,text/plain
+
+spring:
+  jpa:
+    open-in-view: false
+    show-sql: true
+    hibernate:
+        ddl-auto: update
+        naming:
+            physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+            implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    database: MYSQL
+    properties.hibernate.enable_lazy_load_no_trans: true
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/stockmanagement
+    username: root
+    password:

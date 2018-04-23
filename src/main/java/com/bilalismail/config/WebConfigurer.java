@@ -1,4 +1,4 @@
-package com.mpalourdio.html5.config;
+package com.bilalismail.config;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,8 +13,7 @@ import org.springframework.web.servlet.resource.TransformedResource;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-@Configuration
-public class SinglePageAppConfig implements WebMvcConfigurer {
+public class WebConfigurer implements WebMvcConfigurer {
 
     private static final String API_PATH = "/api";
     private static final String PATH_PATTERNS = "/**";
@@ -25,7 +24,8 @@ public class SinglePageAppConfig implements WebMvcConfigurer {
     private final String contextPath;
     private final ResourceProperties resourceProperties;
 
-    public SinglePageAppConfig(
+    public WebConfigurer(
+
             @Value("${server.servlet.context-path}") String contextPath,
             ResourceProperties resourceProperties
     ) {
@@ -38,10 +38,10 @@ public class SinglePageAppConfig implements WebMvcConfigurer {
         registry.addResourceHandler(PATH_PATTERNS)
                 .addResourceLocations(resourceProperties.getStaticLocations())
                 .resourceChain(true)
-                .addResolver(new SinglePageAppResourceResolver());
+                .addResolver(new WebResourceResolver());
     }
 
-    private class SinglePageAppResourceResolver extends PathResourceResolver {
+    private class WebResourceResolver extends PathResourceResolver {
 
         public static final String URL_SEPARATOR = "/";
 
