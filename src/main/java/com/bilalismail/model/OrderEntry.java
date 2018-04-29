@@ -7,7 +7,6 @@ import javax.persistence.*;
 public class OrderEntry extends BaseModel
 {
 
-
     @ManyToOne(optional = false)
     @JoinColumn(name="order_id")
     private Order order;

@@ -3,11 +3,11 @@ import { HttpService } from '../http.service';
 import { SpinnerVisibilityService } from 'ng-http-loader/services/spinner-visibility.service';
 
 @Component({
-    selector: 'app-first',
-    templateUrl: './first.component.html',
-    styleUrls: ['./first.component.css']
+    selector: 'app-product',
+    templateUrl: './product.component.html',
+    styleUrls: ['./product.component.css']
 })
-export class FirstComponent implements OnInit {
+export class ProductComponent implements OnInit {
     datalist: string[] = [];
     datalistselection: string;
 

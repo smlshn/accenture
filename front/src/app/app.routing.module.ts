@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FirstComponent } from './first/first.component';
-import { SecondComponent } from './second/second.component';
+import { ProductComponent } from './product/product.component';
 
 
 const routes: Routes = [
-    {path: '', component: FirstComponent},
-    {path: 'iam/a/very/long/url', component: SecondComponent},
+    {path: '', component: ProductComponent},
     {path: '**', redirectTo: ''}
 ];
 

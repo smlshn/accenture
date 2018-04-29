@@ -11,13 +11,15 @@ spring:
     open-in-view: false
     show-sql: true
     hibernate:
-        ddl-auto: update
+        ddl-auto: create-drop
         naming:
             physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
             implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
-    database-platform: org.hibernate.dialect.MySQL5Dialect
     database: MYSQL
-    properties.hibernate.enable_lazy_load_no_trans: true
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+        dialect: org.hibernate.dialect.MySQL57Dialect
 
   datasource:
     url: jdbc:mysql://localhost:3306/stockmanagement

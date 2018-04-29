@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="order")
+@Table(name="order_table")//order is reserved word
 public class Order extends BaseModel
 {
     @ManyToOne(optional = false)

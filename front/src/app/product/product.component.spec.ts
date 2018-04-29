@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FirstComponent } from './first.component';
+import { FirstComponent } from './product.component';
 import { UploadComponent } from '../upload/upload.component';
 import { UploadService } from '../upload/upload.service';
 import { FormsModule } from '@angular/forms';

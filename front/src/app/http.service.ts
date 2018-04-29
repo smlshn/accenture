@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, map, publishLast, refCount, tap } from 'rxjs/operators';
 import 'rxjs/add/observable/of';
+import {SERVER_API_URL} from "./app.constants";
 
 
 @Injectable()
@@ -32,8 +33,9 @@ export class HttpService {
     runSlowQuery(): Observable<String[]> {
         const headers: HttpHeaders = new HttpHeaders();
         const httpHeaders = headers.append('x-requested-with', 'XmlHttpRequest');
+        const requestURL = SERVER_API_URL + 'slowservice';
 
-        return this.http.get('http://localhost:8080/api/slowservice',
+        return this.http.get(requestURL,
             {
                 'headers': httpHeaders
             }
