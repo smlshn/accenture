@@ -6,10 +6,10 @@ import { JhiEventManager } from '../../service/event-manager.service';
 import { LoginService } from './login.service';
 
 @Component({
-    selector: 'sat-login-modal',
+    selector: 'login-modal',
     templateUrl: './login.component.html'
 })
-export class SatLoginModalComponent implements AfterViewInit {
+export class LoginModalComponent implements AfterViewInit {
     authenticationError: boolean;
     password: string;
     rememberMe: boolean;

@@ -37,12 +37,10 @@ export class JhiAlertService {
     private alertId: number;
     private alerts: JhiAlert[];
     private timeout: number;
-    private toast: boolean;
 
     constructor(
         private sanitizer: Sanitizer,
     ) {
-        this.toast = true;
         this.alertId = 0; // unique id for each alert. Starts from 0.
         this.alerts = [];
         this.timeout = 1000;
@@ -132,9 +130,5 @@ export class JhiAlertService {
 
     closeAlertByIndex(index: number, thisAlerts: JhiAlert[]): JhiAlert[] {
         return thisAlerts.splice(index, 1);
-    }
-
-    isToast(): boolean {
-        return this.toast;
     }
 }

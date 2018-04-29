@@ -1,30 +1,34 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
 import { AppRoutingModule } from './app.routing.module';
 import { NgHttpLoaderModule } from 'ng-http-loader/ng-http-loader.module';
 import { HttpService } from './http.service';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
+import {MainComponent, NavbarComponent} from "./layouts";
+import {SharedModule} from "./shared";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
     declarations: [
-        AppComponent,
+        MainComponent,
         ProductComponent,
+        NavbarComponent,
     ],
     imports: [
         BrowserModule,
+        AppRoutingModule,
+        SharedModule,
         FormsModule,
         HttpClientModule,
         HttpClientXsrfModule,
-        AppRoutingModule,
         NgHttpLoaderModule,
     ],
     providers: [
         HttpService,
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [MainComponent]
 })
 export class AppModule {
 }

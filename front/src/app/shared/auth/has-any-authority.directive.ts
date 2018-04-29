@@ -13,9 +13,9 @@ import { Principal } from './principal.service';
  * ```
  */
 @Directive({
-    selector: '[satHasAnyAuthority]'
+    selector: '[accHasAnyAuthority]'
 })
-export class HasAnyAuthorityDirective {
+export class AccHasAnyAuthorityDirective {
 
     private authorities: string[];
 
@@ -23,7 +23,7 @@ export class HasAnyAuthorityDirective {
     }
 
     @Input()
-    set satHasAnyAuthority(value: string|string[]) {
+    set accHasAnyAuthority(value: string|string[]) {
         this.authorities = typeof value === 'string' ? [ <string> value ] : <string[]> value;
         this.updateView();
         // Get notified each time authentication state changes.

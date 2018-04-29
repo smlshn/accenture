@@ -1,6 +1,5 @@
 
 export * from './alert/alert.component';
-export * from './alert/alert-error.component';
 export * from './auth/account.service';
 export * from './auth/auth-session.service';
 export * from './auth/principal.service';
@@ -13,3 +12,6 @@ export * from './user/account.model';
 export * from './user/user.model';
 export * from './user/user.service';
 export * from './model/base-entity';
+export * from './shared-libs.module';
+export * from './shared.module';
+
