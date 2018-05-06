@@ -62,9 +62,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable()
             .and()
                 .authorizeRequests()
-                .antMatchers("/api/admin").hasRole("ADMIN")
-                .antMatchers("/api/product").hasAnyAuthority("CUSTOMER","ADMIN")
-                .antMatchers("/api/service1").hasAnyAuthority("CUSTOMER","ADMIN")
+                .antMatchers("/api/supplier").hasRole("SUPPLIER")
+                .antMatchers("/api/product").hasAnyAuthority("CUSTOMER","SUPPLIER")
+                .antMatchers("/api/service1").hasAnyAuthority("CUSTOMER","SUPPLIER")
                 .antMatchers("/api/**").authenticated();
 
     }
