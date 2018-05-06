@@ -3,14 +3,9 @@ package com.bilalismail.service;
 import com.bilalismail.model.Order;
 import com.bilalismail.model.OrderEntry;
 import com.bilalismail.model.Product;
-import com.bilalismail.model.User;
 import com.bilalismail.repository.OrderEntryRepository;
-import com.bilalismail.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class OrderEntryService
@@ -18,7 +13,17 @@ public class OrderEntryService
     @Autowired
     private OrderEntryRepository repository;
 
-    public OrderEntry addProduct(Order order, Product product){
+    @Autowired
+    private SessionService sessionService;
+
+    @Autowired
+    private ProductService productService;
+
+    public OrderEntry addProduct(Long productId){
+
+        Order order = sessionService.getCurrentOrder();
+
+        Product product = productService.findByProductId(productId);
 
         OrderEntry entry = repository.findByOrderAndProduct(order,product);
 
@@ -31,7 +36,11 @@ public class OrderEntryService
         return entry;
     }
 
-    public void removeProduct(Order order, Product product){
+    public void removeProduct(Long productId){
+
+        Order order = sessionService.getCurrentOrder();
+
+        Product product = productService.findByProductId(productId);
 
         OrderEntry entry = repository.findByOrderAndProduct(order,product);
 

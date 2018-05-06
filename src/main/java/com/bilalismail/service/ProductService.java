@@ -16,4 +16,13 @@ public class ProductService
     public List<Product> getAll(){
         return repository.findAll();
     }
+
+    public Product findByProductId(Long productId){
+        return this.repository.findById(productId).get();
+    }
+
+    public void addProduct(byte[] image, String productName){
+        Product product = new Product(productName, image);
+        repository.save(product);
+    }
 }

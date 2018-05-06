@@ -18,6 +18,11 @@ public class Product extends BaseModel
     @Column(name = "image", length = 256)
     private byte[] image;
 
+    public Product(String name, @Size(max = 16777215) byte[] image) {
+        this.name = name;
+        this.image = image;
+    }
+
     public String getName()
     {
         return name;

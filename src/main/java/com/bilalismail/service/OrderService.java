@@ -1,10 +1,7 @@
 package com.bilalismail.service;
 
 import com.bilalismail.model.Order;
-import com.bilalismail.model.OrderEntry;
-import com.bilalismail.model.Product;
 import com.bilalismail.model.User;
-import com.bilalismail.repository.OrderEntryRepository;
 import com.bilalismail.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,20 +10,15 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class OrderService
-{
+public class OrderService {
     @Autowired
     private OrderRepository repository;
 
-    @Autowired
-    private OrderEntryRepository entryRepository;
-
-
-    public Order findOrCreateOrder(User user){
+    public Order findOrCreateOrder(User user) {
 
         Order order = repository.findByApprovedIsFalseAndSendToApproveIsFalseAndUser(user);
 
-        if(order==null){
+        if (order == null) {
             order = new Order(user);
             repository.save(order);
         }
@@ -35,16 +27,14 @@ public class OrderService
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public Order approveOrder(Order order){
+    public Order approveOrder(Order order) {
 
         order.setApproved(Boolean.TRUE);
         return repository.save(order);
     }
 
-    public List<Order> getAllOrdersToBeApproved(){
+    public List<Order> getAllOrdersToBeApproved() {
         return repository.findAllByApprovedIsFalseAndSendToApproveIsTrue();
     }
-
-
 
 }

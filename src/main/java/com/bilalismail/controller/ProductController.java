@@ -3,9 +3,8 @@ package com.bilalismail.controller;
 import com.bilalismail.model.Product;
 import com.bilalismail.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,7 +16,13 @@ public class ProductController
     private ProductService service;
 
     @GetMapping("/list")
-    private List<Product> list(){
+    public List<Product> list(){
         return service.getAll();
+    }
+
+    @PostMapping("/{productName}/add")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public void addProduct(@RequestBody byte[] image, @RequestParam String productName){
+        service.addProduct(image, productName);
     }
 }
