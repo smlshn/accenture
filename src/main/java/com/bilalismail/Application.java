@@ -24,12 +24,13 @@ public class Application
         //Arrays.stream(beanNames).sorted().forEach(System.out::println);
     }
 
-    @Bean
+    //@Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("*");
+                registry.addMapping("/**").allowedMethods("GET", "POST", "PUT", "DELETE").allowedOrigins("http://localhost:4200")
+                        .allowedHeaders("*");
             }
         };
     }

@@ -48,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         System.out.println("------------------");
-        http
+        http    //.cors().and()
                 .csrf().disable()
 
                 .formLogin()
@@ -57,6 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
                 .successHandler(authSuccessHandler)
                 .permitAll()
+
             .and()
                 .logout()
                 .logoutUrl("/api/logout")
@@ -67,6 +68,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable()
             .and()
                 .authorizeRequests()
+
+                .antMatchers("/api/account").permitAll()
                 .antMatchers("/api/supplier").hasRole("SUPPLIER")
                 .antMatchers("/api/product").hasAnyAuthority("CUSTOMER","SUPPLIER")
                 .antMatchers("/api/service1").hasAnyAuthority("CUSTOMER","SUPPLIER")
