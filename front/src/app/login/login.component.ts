@@ -35,11 +35,14 @@ export class LoginComponent implements OnInit {
         this.authenticationService.login(this.model.username, this.model.password)
             .subscribe(
                 data => {
+                    debugger;
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
-                    this.alertService.error(error);
-                    this.loading = false;
+                    this.authenticationService.getUser().subscribe(user=>{
+                        localStorage.setItem('user',user);
+                        this.router.navigate([this.returnUrl]);
+                    });
                 });
     }
 }
