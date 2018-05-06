@@ -30,13 +30,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserService userService;
 
-    private final CorsFilter corsFilter;
 
 
-    public WebSecurityConfig(UserService userService, CorsFilter corsFilter) {
+    public WebSecurityConfig(UserService userService) {
 
         this.userService = userService;
-        this.corsFilter = corsFilter;
     }
 
     @Override
@@ -61,7 +59,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception
     {
         http
-                .addFilterBefore(corsFilter, FilterSecurityInterceptor.class)
                 .formLogin()
                 .loginProcessingUrl("/api/authentication")
                 .passwordParameter("password")

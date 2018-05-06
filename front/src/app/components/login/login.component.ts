@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { AlertService, AuthenticationService } from '../_services/index';
+import { AlertService, AuthenticationService } from '../../_services/index';
 
 @Component({
     moduleId: module.id,
@@ -18,11 +18,12 @@ export class LoginComponent implements OnInit {
         private router: Router,
         private authenticationService: AuthenticationService,
         private alertService: AlertService) {
-        this.model.username="ismailsahin@gmail.com";
-        this.model.password="asdf";
+        //this.model.username="ismailsahin@gmail.com";
+        //this.model.password="asdf";
     }
 
     ngOnInit() {
+        debugger;
         // reset login status
         this.authenticationService.logout();
 
@@ -31,18 +32,23 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
+        debugger;
         this.loading = true;
-        this.authenticationService.login(this.model.username, this.model.password)
+        this.authenticationService.login(this.model.email, this.model.password)
             .subscribe(
                 data => {
                     debugger;
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
+                    debugger;
                     this.authenticationService.getUser().subscribe(user=>{
-                        localStorage.setItem('user',user);
+                        localStorage.setItem('user',JSON.stringify(user));
                         this.router.navigate([this.returnUrl]);
-                    });
+                    },
+                      error2=>  {
+                            this.alertService.error("wrong email or password");
+                        });
                 });
     }
 }
