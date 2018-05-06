@@ -12,4 +12,5 @@ public interface OrderRepository extends BaseRepository<Order>
     Order findByApprovedIsFalseAndSendToApproveIsFalseAndUser(User user);
 
     List<Order> findAllByApprovedIsFalseAndSendToApproveIsTrue();
+
 }
