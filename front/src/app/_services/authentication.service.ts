@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 
@@ -9,13 +9,17 @@ export class AuthenticationService {
 
     login(username: string, password: string) {
 
-        var header = new HttpHeaders({'Content-Type': 'application/form-data'});
+        var header = new HttpHeaders()
+            .set('Content-Type', 'application/x-www-form-urlencoded')
+            .set('Access-Control-Allow-Origin', 'http://localhost:4200');
 
-        let formData:FormData = new FormData();
-        formData.append('username', username);
-        formData.append('password', password);
 
-        return this.http.post<any>('http://localhost:8080/api/authentication', formData,{headers:header})
+        const body = new HttpParams()
+            .set('username', username)
+            .set('password', password);
+
+
+        return this.http.post<any>('http://localhost:8080/api/authentication', body,{headers:header})
             .map(user => {
                 debugger;
                 // login successful if there's a jwt token in the response

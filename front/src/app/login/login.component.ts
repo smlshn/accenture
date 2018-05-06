@@ -17,7 +17,10 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
-        private alertService: AlertService) { }
+        private alertService: AlertService) {
+        this.model.username="ismailsahin@gmail.com";
+        this.model.password="asdf";
+    }
 
     ngOnInit() {
         // reset login status

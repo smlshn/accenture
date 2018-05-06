@@ -18,10 +18,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserService userService;
 
-    public WebSecurityConfig(AuthenticationManagerBuilder authenticationManagerBuilder, UserService userService) {
+    private final AuthSuccessHandler authSuccessHandler;
+
+
+    public WebSecurityConfig(AuthenticationManagerBuilder authenticationManagerBuilder, UserService userService, AuthSuccessHandler authSuccessHandler) {
 
         this.authenticationManagerBuilder = authenticationManagerBuilder;
         this.userService = userService;
+        this.authSuccessHandler = authSuccessHandler;
     }
 
     @PostConstruct
@@ -51,6 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/api/authentication")
                 .usernameParameter("username")
                 .passwordParameter("password")
+                .successHandler(authSuccessHandler)
                 .permitAll()
             .and()
                 .logout()
