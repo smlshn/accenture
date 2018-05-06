@@ -3,11 +3,5 @@
         "target": "http://localhost:8080",
         "changeOrigin": true,
         "secure": false
-    },
-    "/app/**": {
-        "target": "http://localhost:4200",
-        "changeOrigin": true,
-        "secure": false,
-        "logLevel": "debug"
     }
 }
