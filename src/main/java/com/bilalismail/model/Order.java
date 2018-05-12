@@ -1,5 +1,8 @@
 package com.bilalismail.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,10 +11,12 @@ import java.util.Set;
 @Table(name="order_table")//order is reserved word
 public class Order extends BaseModel
 {
+    @JsonIgnoreProperties("user")
     @ManyToOne(optional = false)
     @JoinColumn(name="user_id")
     private User user;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "order")
     private Set<OrderEntry> entries = new HashSet<>();
 
@@ -20,6 +25,9 @@ public class Order extends BaseModel
 
     @Column(name="approved")
     private Boolean approved = Boolean.FALSE;
+
+    public Order() {
+    }
 
     public Order(User user)
     {

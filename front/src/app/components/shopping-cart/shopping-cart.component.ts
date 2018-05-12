@@ -14,6 +14,7 @@ import {OrderService} from "../../_services";
 export class ShoppingOrderComponent implements OnInit, OnDestroy {
   public products: Observable<Product[]>;
   public cart: Observable<Order>;
+
   public itemCount: number;
 
   private cartSubscription: Subscription;
@@ -23,15 +24,21 @@ export class ShoppingOrderComponent implements OnInit, OnDestroy {
   }
 
   public emptyOrder(): void {
+    this.cartService.emptyOrdersEntry().subscribe();
+  }
 
+  public sendToApprove(): void {
+    this.cartService.sendToApprove().subscribe();
   }
 
   public ngOnInit(): void {
     this.products = this.productsService.all();
     this.cart = this.cartService.get();
+    console.log(this.cart);
+  
     this.cartSubscription = this.cart.subscribe((cart) => {
-
       this.itemCount = cart.entries.length;
+      console.log("asd", cart.entries.length);
     });
   }
 

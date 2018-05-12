@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
         private router: Router,
         private authenticationService: AuthenticationService,
         private alertService: AlertService) {
-        //this.model.username="ismailsahin@gmail.com";
-        //this.model.password="asdf";
+        this.model.username="ismailsahin@gmail.com";
+        this.model.password="asdf";
     }
 
     ngOnInit() {

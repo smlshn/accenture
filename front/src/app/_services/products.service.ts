@@ -19,7 +19,6 @@ export class ProductsDataService {
     return this.http.get(API_URL+"/product/list")
         .map((res: any) =>{
               return <Product[]>res.map(item => {
-                  debugger;
                   return item;
               });
           });

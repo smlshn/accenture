@@ -46,4 +46,14 @@ public class OrderController
     public void removeProduct(@PathVariable Long productId){
         orderEntryService.removeProduct(productId);
     }
+
+    @GetMapping("/order-entries/empty")
+    public void emptyOrdersEntries(){
+        orderEntryService.emptyOrdersEntry();
+    }
+
+    @GetMapping("/send-to-approve")
+    public void sendToApprove(){
+        orderService.sendToApprove();
+    }
 }

@@ -23,6 +23,15 @@ public class Product extends BaseModel
         this.image = image;
     }
 
+    public Product(Long id, String name, @Size(max = 16777215) byte[] image) {
+        setId(id);
+        this.name = name;
+        this.image = image;
+    }
+
+    public Product() {
+    }
+
     public String getName()
     {
         return name;

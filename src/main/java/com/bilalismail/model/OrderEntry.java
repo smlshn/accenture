@@ -1,5 +1,8 @@
 package com.bilalismail.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,13 +10,18 @@ import javax.persistence.*;
 public class OrderEntry extends BaseModel
 {
 
+    @JsonBackReference
     @ManyToOne(optional = false)
     @JoinColumn(name="order_id")
     private Order order;
 
+    @JsonIgnoreProperties("product")
     @ManyToOne(optional = false)
     @JoinColumn(name="product_id")
     private Product product;
+
+    public OrderEntry() {
+    }
 
     public OrderEntry(Order order, Product product)
     {

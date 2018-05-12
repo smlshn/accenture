@@ -12,6 +12,7 @@ import {ProductsDataService} from "./_services/products.service";
 import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
+    bootstrap: [AppComponent],
     imports: [
         BrowserModule,
         FormsModule,
@@ -32,7 +33,6 @@ import {HttpClientModule} from "@angular/common/http";
         ProductsDataService,
         AuthenticationService
     ],
-    bootstrap: [AppComponent]
 })
 
 export class AppModule { }

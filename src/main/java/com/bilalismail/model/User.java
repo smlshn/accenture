@@ -1,5 +1,7 @@
 package com.bilalismail.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -20,6 +22,7 @@ public class User extends BaseModel implements UserDetails
     @Column(name="email", unique = true)
     private String email;
 
+    @JsonIgnoreProperties("authorities")
     @ManyToMany
     @JoinTable(
             name = "user_authority",

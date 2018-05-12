@@ -6,6 +6,10 @@ import com.bilalismail.model.Product;
 import com.bilalismail.repository.OrderEntryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class OrderEntryService
@@ -51,5 +55,13 @@ public class OrderEntryService
 
     }
 
+    @Transactional
+    public void emptyOrdersEntry(){
+        Order order = sessionService.getCurrentOrder();
+        if(order != null){
+            Set<OrderEntry> orderEntries = order.getEntries();
+            repository.deleteAll(orderEntries);
+        }
+    }
 
 }
