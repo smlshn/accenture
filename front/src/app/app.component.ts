@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {AuthenticationService} from "./_services";
 
 @Component({
     moduleId: module.id,
@@ -6,4 +7,13 @@ import { Component } from '@angular/core';
     templateUrl: 'app.component.html'
 })
 
-export class AppComponent { }
+export class AppComponent {
+
+
+    public constructor(private authenticationService: AuthenticationService) {
+    }
+
+    public logout(): void {
+        this.authenticationService.logout();
+    }
+}

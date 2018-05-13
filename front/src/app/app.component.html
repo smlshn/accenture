@@ -1,19 +1,27 @@
 <!-- main app container -->
-<div class="jumbotron">
-    <div class="container">
-        <div class="col-sm-8 col-sm-offset-2">
-            <alert></alert>
-            <router-outlet></router-outlet>
+
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">Shopping App</a>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+
+        </ul>
+        <div *ngIf="this.authenticationService.isAuthenticated();">
+
+            <app-shopping-cart></app-shopping-cart>
+            <button class="btn btn-outline-warning" (click)="logout()" >Logout</button>
+
+
         </div>
+    </div>
+</nav>
+<div class="container">
+
+    <div class="col-sm-12">
+        <alert></alert>
+
+        <router-outlet></router-outlet>
     </div>
 </div>
 
-<!-- credits -->
-<div class="text-center">
-    <p>
-        <a href="http://jasonwatmore.com/post/2016/09/29/angular-2-user-registration-and-login-example-tutorial" target="_top">Angular 2 User Registration and Login Example & Tutorial</a>
-    </p>
-    <p>
-        <a href="http://jasonwatmore.com" target="_top">JasonWatmore.com</a>
-    </p>
-</div>

@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import {Router} from "@angular/router";
+import {User} from "../_models";
 
 @Injectable()
 export class AuthenticationService {
@@ -19,10 +20,12 @@ export class AuthenticationService {
             .set('username', username)
             .set('password', password);
 
-
-        debugger;
         return this.http.post<any>('http://localhost:8080/api/authentication', body,{headers:header,withCredentials:true});
 
+    }
+
+    getStoredUser(): User{
+        return JSON.parse(localStorage.user);
     }
 
     getUser(): Observable<any> {
@@ -32,8 +35,16 @@ export class AuthenticationService {
         });
     }
 
+    isAuthenticated(){
+        if(localStorage.getItem('user'))
+            return true;
+
+        return false;
+    }
+
     logout() {
         // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
+        localStorage.removeItem('user');
+        window.location.reload();
     }
 }

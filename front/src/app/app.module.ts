@@ -10,6 +10,8 @@ import {LoginComponent, ShoppingOrderComponent} from './components/index';
 import {StoreFrontComponent} from "./components/store-front/store-front.component";
 import {ProductsDataService} from "./_services/products.service";
 import {HttpClientModule} from "@angular/common/http";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {HasAuthorityDirective} from "./_directives/has-authority.directive";
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -17,11 +19,13 @@ import {HttpClientModule} from "@angular/common/http";
         BrowserModule,
         FormsModule,
         HttpClientModule,
-        routing
+        routing,
+        NgbModule.forRoot()
     ],
     declarations: [
         AppComponent,
         AlertComponent,
+        HasAuthorityDirective,
         ShoppingOrderComponent,
         StoreFrontComponent,
         LoginComponent

@@ -3,4 +3,11 @@ export class User {
     email: string;
     password: string;
     nameSurname: string;
+    authorities: Authority[];
 }
+
+export class Authority{
+    name: string
+}
+
+

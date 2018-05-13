@@ -23,32 +23,29 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        debugger;
-        // reset login status
-        this.authenticationService.logout();
-
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
     login() {
-        debugger;
+
         this.loading = true;
         this.authenticationService.login(this.model.email, this.model.password)
             .subscribe(
                 data => {
-                    debugger;
+
                     this.router.navigate([this.returnUrl]);
-                },
-                error => {
-                    debugger;
+
                     this.authenticationService.getUser().subscribe(user=>{
-                        localStorage.setItem('user',JSON.stringify(user));
-                        this.router.navigate([this.returnUrl]);
-                    },
-                      error2=>  {
+                            localStorage.setItem('user',JSON.stringify(user));
+                            this.router.navigate([this.returnUrl]);
+                        },
+                        error2=>  {
                             this.alertService.error("wrong email or password");
                         });
+                },
+                error => {
+                    this.alertService.error("wrong email or password");
                 });
     }
 }

@@ -30,6 +30,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserService userService;
 
+    private static final String SUPPLIER = "SUPPLIER";
+    private static final String CUSTOMER = "CUSTOMER";
 
 
     public WebSecurityConfig(UserService userService) {
@@ -70,17 +72,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .cors().and()
 
+
                 // starts authorizing configurations
                 .authorizeRequests()
-                    .antMatchers("/api/supplier").hasRole("SUPPLIER")
-                    .antMatchers("/api/product").hasAnyAuthority("CUSTOMER","SUPPLIER")
-                    .antMatchers("/api/service1").hasAnyAuthority("CUSTOMER","SUPPLIER")
+                /*
+                    .antMatchers("/api/supplier").hasRole(SUPPLIER)
+                    .antMatchers("/api/product").hasAnyAuthority(CUSTOMER,SUPPLIER)
+                    .antMatchers("/api/service1").hasAnyAuthority(CUSTOMER,SUPPLIER)
 
                 // ignoring the guest's urls "
                 .antMatchers("/api/authentication", "/api/logout").permitAll()
 
                 // authenticate all remaining URLS
                 .anyRequest().fullyAuthenticated().and()
+                */
+                .anyRequest().permitAll().and()
 
 
                 /* "/logout" will log the user out by invalidating the HTTP Session,
