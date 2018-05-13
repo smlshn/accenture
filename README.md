@@ -1,7 +1,3 @@
-[![Build Status](https://travis-ci.org/mpalourdio/SpringBootAngularHTML5.svg?branch=master)](https://travis-ci.org/mpalourdio/SpringBootAngularHTML5)
-
-NB: Older Spring Boot and Angular versions are available in [branches](https://github.com/mpalourdio/SpringBootAngularHTML5/branches).
-
 Spring Boot 2.x and Angular 5.x with HTML 5 router
 ====================================================
 
