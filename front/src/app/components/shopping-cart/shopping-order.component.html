@@ -1,0 +1,19 @@
+<div ngbDropdown class="d-inline-block shopping-cart-container " placement="bottom-right" style="padding-right: 20px">
+    <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle><i class="fa fa-shopping-cart"></i>
+        <span style="padding: 2px;">{{itemCount}}</span>
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1" >
+        <ul class="shopping-cart-items">
+            <li class="dropdown-item" *ngFor="let entry of cart.entries" >
+                <img src="../../../assets/{{entry.product.id}}.jpg" width="20px" height="20px" /> {{entry.product.name}}
+
+                <button class="btn-sm btn btn-danger" (click)="removeProductFromOrder(entry.product)" style="float:right;font-weight: bold">X</button>
+            </li>
+
+            <li class="dropdown-item" (click)="sendToApprove()" >
+
+                Send To Approve
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,25 +1,33 @@
-import { Injectable } from "@angular/core";
+import {HostListener, Injectable} from "@angular/core";
 import "rxjs/add/operator/map";
 import { Observable } from "rxjs/Observable";
 import {API_URL} from "../app.constants";
 import {HttpClient} from "@angular/common/http";
 import {Order,Product} from "../_models";
+import {Subject} from "rxjs/Subject";
 
 
 @Injectable()
 export class OrderService {
 
+    public _subject = new Subject<object>();
+    public addToOrderEvent = this._subject.asObservable();
+
     public constructor(private http: HttpClient) {
 
     }
 
-    addItem(product: Product):Observable<any>{
+    public publishAddToOrder(data: any) {
+        this._subject.next(data);
+    }
+
+    addToOrder(product: Product):Observable<any>{
         let productId = product.id;
         const url = `/order/product/${productId}/add`;
         return this.http.get(API_URL + url)
-    } 
+    }
 
-    removeItem(product: Product): Observable<any> {
+    removeProductFromOrder(product: Product): Observable<any> {
         let productId = product.id;
         const url = `/order/product/${productId}/remove`;
         return this.http.get<any>(API_URL + url);
