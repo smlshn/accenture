@@ -8,21 +8,6 @@ Spring Boot 2.x and Angular 5.x with HTML 5 router
 This project provides an example of an Angular single page application, served by ``Tomcat``,
 configured with the ``html5 router``.
 
-The [SinglePageAppConfig](src/main/java/com/bilalismail/config/SinglePageAppConfig.java) makes the magic here.
+The [Application](src/main/java/com/bilalismail/config/Application.java) starts the application. It will use 8080 port on your localhost.
 
-The ``base-href`` in configured by the ResourceResolver. It takes the value of the application [context-path](src/main/resources/application.yml#L11) at runtime when served by tomcat.
-
-It's useful if you want to serve an Angular application with the ``html5 router``, and avoid the dashed URL.
-
-This ``html5 router`` mode makes pretty URL, but has a default : Refreshing pages (or accessing them directly) will give you a 404
-http error if no RewriteRule is provided by the http server that serve the application.
-
-Handling the ``base-href`` dynamically can be tricky too. Here it's done once and for all by the ResourceResolver.
-
-This project includes too a custom [http interceptor](https://github.com/mpalourdio/ng-http-loader). It's useful to show a [loader](https://github.com/tobiasahlin/SpinKit) during long http requests for example.
-
-To test the fully built project, run [SpringBootAngularHTML5Application](src/main/java/com/bilalismail/SpringBootAngularHTML5Application.java) after an ``./mvnw clean install -Pfront``, and point your browser to [http://localhost:8080/](http://localhost:8080/).
-
-If you want to play with the front part, go to the [front folder](front) and run ``yarn start`` or ``npm start``. Http requests will be correctly proxyfied to your backend.
-
-The front-end part has been scaffolded with [angular-cli](https://github.com/angular/angular-cli).
+To run angular application you should run ``yarn start`` under [front](front) directory. Http requests will be correctly proxyfied to your backend. 
